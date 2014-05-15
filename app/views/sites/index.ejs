@@ -1,0 +1,72 @@
+<% include ../layouts/header %>
+
+    <div class="container-fluid">
+      <section>
+        <div class="page-header">
+
+          <h3> Websites , <small><a id="copy_script" href="#"> show script </a> </small>
+            <small id="script_tags" style="display: none;"> &nbsp; , insert the following sript in your page : 
+            <input id="copy_input" class="span6" 
+            value='<script src="http://tracker.redpointrack.com/assets/webtrack.js" type="text/javascript"></script>'/> 
+            <a id="copy-to-clipboard" href="#">copy</a>		
+            </small>
+          </h3>
+          <a data-remote="true" data-keyboard="true" data-controls-modal="myModal" data-backdrop="true" class="btn pull-right" href="/sites/new">New Site</a>			
+        </div>
+        <table class="table table-striped table-condensed">
+          <thead>
+            <tr>
+              <th colspan="5">
+                <form id="display_filter_form" action="/admin/websites?" class="form-inline">
+                  <label>Display : </label>
+                  <select name="active" id="display_filter">
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                    <option value="all">All</option>
+                  </select>
+                </form>
+              </th>
+            </tr>
+            <tr>
+              <th><a href="#">Site ID</a></th>
+              <th><a href="#">URL</a></th>
+              <th><a class="current asc" href="#">Created On</a> <i class="icon-circle-arrow-up"></i></th>
+              <th><a href="#">Total Visits</a></th>
+              <th><a href="#">Total Visitors</a></th>
+              <th><a href="">Total Phone Numbers</a></th>
+              <th><a href="">Total Phone Calls</a></th>
+              <th style="width: 50px;"><a href="#">Display</a></th>
+              <th style="width: 50px;"></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% if (typeof sites != 'undefined') { %> 
+          
+          <% sites.forEach(function(site){ %>            
+            <tr>
+              <td><a href="/sites/<%= site._id%>/edit"><%= site._id %></a></td>
+              <td><%= site.website_url %></td>
+              <td><%= site.formatedDate %></td>
+              <td><%= site.total_visites %></td>
+              <td><a href="/site/44/visitors"><%= site.total_visitors %></a></td>
+              <td><%= site._id %></td>
+              <td> <%= site._id %> </td>
+              <td><a class="label label-<%= site.status == "active" ? "info" : "important" %> ajax_submit" data="<%= site._id %>">
+                    <%= site.status %>
+                  </a>
+              </td>
+              <td>           
+                <form action="/sites/<%= site._id%>" method="post" onsubmit="return confirm('Are you sure?')">            
+                  <input type="hidden" name="_method" value="DELETE"/>
+                  <button type="submit" class="btn btn-danger btn-mini">delete</button>
+                </form>            
+              </td>
+            </tr>
+          <% }) %>
+          <% } %>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+<% include ../layouts/footer %>
