@@ -4,6 +4,7 @@ var mongoose = require('mongoose')
   , crypto = require('crypto')
   , validate = require('mongoose-validator').validate
   , uniqueValidator = require('mongoose-unique-validator')
+  , Site = mongoose.model('Site')
 
 var UserSchema = new Schema({
   first_name: { type: String, required: "can't be blank" },  
@@ -17,10 +18,9 @@ var UserSchema = new Schema({
   street_address_2: { type: String },
   city: { type: String },
   state_province: { type: String },
-postal_code: { type: String },
-country: { type: String },
-timezone: { type: String },
-  
+  postal_code: { type: String },
+  country: { type: String },
+  timezone: { type: String },  
   createdAt: { type : Date, default : Date.now }
 })
 
@@ -55,6 +55,14 @@ UserSchema.methods = {
 
 UserSchema.virtual('full_name').get(function () {
   return this.first_name + " " +this.last_name
+})
+
+UserSchema.virtual('sites').get(function () {
+  var id = this._id
+  Site.find({}, function (err, sites) {
+    console.log("in")
+    return sites
+  })
 })
 
 UserSchema.plugin(uniqueValidator, { message: '{PATH} already in use.' })

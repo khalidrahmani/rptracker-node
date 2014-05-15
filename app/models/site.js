@@ -49,5 +49,9 @@ SiteSchema.virtual('status').get(function () {
   return this.active ? "active" : "inactive"
 })
 
+SiteSchema.statics.getUserSites = function (id, cb) {
+  this.find({ owner: id }, cb)
+}
+
 SiteSchema.plugin(uniqueValidator, { message: '{PATH} already in use.' })
 mongoose.model('Site', SiteSchema)
