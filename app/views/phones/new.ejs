@@ -13,14 +13,14 @@
                   <div class="control-group url">
                     <label class="url control-label">Website URL</label>
                     <div class="controls">
-						<select name="website" id="website" class="select">
+						        <select name="site" id="site" class="select">
 	                        <option value="">Select</option>
 	                        <% if (typeof sites != 'undefined') { %>	
 		                        <% sites.forEach(function(site){ %> 
 		                        	<option value=<%= site.id %>><%= site.website_url %></option>
 		                        <% }) %>
 	                        <% }  %>
-	                      </select>
+                    </select>
                     </div>
                   </div>
                   <div class="control-group url">
@@ -29,7 +29,7 @@
 
 						<select name="quantity" id="quantity" class="select required">
 							<option value="">Select</option>
-							<% for(var i=1; i<66; i++){%>
+							   <% for(var i=1; i<66; i++){%>
 	                        	<option value=<%= i %>> <%= i %> </option>	                        
 	                        <% } %>
 	                      </select>
@@ -37,11 +37,15 @@
                   </div>
                   <div class="control-group url optional">
                     <label class="url optional control-label">Destination</label>
-                    <div class="controls"><input type="text" size="50" name="third_party_url" id="third_party_url" class="string url optional"></div>
+                    <div class="controls"><input type="text" size="50" name="destination_number" id="destination_number" class="string optional"></div>
                   </div>
                   <div class="control-group boolean optional">
                     <label class="boolean optional control-label">Activate immediately</label>
-                    <div class="controls"><label class="checkbox"><input type="checkbox" name="third_party_url_enabled" id="third_party_url_enabled" class="boolean optional"></label></div>
+                    <div class="controls">
+                      <label class="checkbox">
+                        <input type="checkbox" name="activate_immediately" id="activate_immediately" class="boolean optional"/>
+                      </label>
+                    </div>
                   </div>
                   <div class="control-group">
                   <label for="input01" class="control-label"> </label>

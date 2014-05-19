@@ -84,13 +84,41 @@ exports.edit = function (req, res) {
   })
 }
 
-exports.update = function(req, res){
 
+
+exports.update = function(req, res){
   user = req.user
   user = extend(user, req.body)
   user.save(function (err) {
         if (err) { 
           return res.render('users/edit', {
+             error: {type: "error", errors: user.errors}
+            ,params: req.body
+            ,user: user
+          })
+        }   
+        else{
+          req.session.messages = {type: 'success', message: 'User updated'}
+          return res.redirect('/')      
+        }         
+      })  
+}
+
+exports.settings = function (req, res) {
+  User.findOne({ _id : req.user._id }).lean().exec(function (err, user) {  
+    res.render('users/settings', {
+       user: user
+      ,params: user
+    })
+  })
+}
+
+exports.updateSettings = function(req, res){
+  user = req.user
+  user = extend(user, req.body)
+  user.save(function (err) {
+        if (err) { 
+          return res.render('users/settings', {
              error: {type: "error", errors: user.errors}
             ,params: req.body
             ,user: user

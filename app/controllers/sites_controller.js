@@ -27,7 +27,7 @@ exports.create = function (req, res) {
         ,site: site
       })
     }    
-    return res.redirect('/')    
+    else return res.redirect('/')    
   })
 }
 

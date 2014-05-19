@@ -21,18 +21,20 @@ module.exports = function (app, passport) {
   app.get('/users/edit', auth.requiresLogin, users_controller.edit)
   app.post('/users/update', auth.requiresLogin, users_controller.update)  
   
+  app.get('/users/settings', auth.requiresLogin, users_controller.settings)
+  app.post('/users/settings', auth.requiresLogin, users_controller.updateSettings) 
 
   app.get('/', auth.requiresLogin, sites_controller.index)
   app.get('/sites/new', auth.requiresLogin, sites_controller.new)
   app.post('/sites', auth.requiresLogin, sites_controller.create)
   app.get('/sites/:id/edit', auth.requiresLogin, sites_controller.edit)
   app.post('/sites/:id', auth.requiresLogin, sites_controller.update)  
-  app.del('/sites/:id', auth.requiresLogin, sites_controller.destroy)
+  app.delete('/sites/:id', auth.requiresLogin, sites_controller.destroy)
   app.get('/sites/activate', auth.requiresLogin, sites_controller.activate)  
 
   app.get('/phones', auth.requiresLogin, phones_controller.index)
   app.get('/phones/new', auth.requiresLogin, phones_controller.new)  
-  app.get('/phones/create', auth.requiresLogin, phones_controller.create)  
+  app.post('/phones/create', auth.requiresLogin, phones_controller.create)  
 
   app.get('*', function(req, res, next) {
       res.status(404).render('404', {

@@ -24,34 +24,33 @@
     "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec --timeout 10000 test/test-*.js"
   },
   "dependencies": {
-    "express": "*", 
-    "ejs": "*",
-    "mongoose": "*",
-    "connect-mongo": "*",    
-    "connect-flash": "*",
-    "passport": "*",
-    "passport-local": "*",
-    "winston": "*",
-    "notifier": "*",
-    "async": "*",
-    "view-helpers": "*",
-    "forever": "*"
+    "express": "*"
+    ,"ejs": "*"
+    ,"mongoose": "*"
+    ,"connect-mongo": "*"
+    ,"connect-flash": "*"
+    ,"passport": "*"                                         
+    ,"passport-local": "*"
+    ,"winston": "*"
+    ,"notifier": "*"
+    ,"async": "*"
+    ,"view-helpers": "*"
+    ,"forever": "*"
     
-,"serve-favicon": "*"
-,"cookie-parser": "*"
-,"body-parser": "*"
-,"compression": "*"
-,"morgan": "*"
-,"express-session": "*"
-,"method-override": "*"
-,"csrf-crypto": "*"
-
-,"validator": "*"
-,"mongoose-validator": "*"
-,"mongoose-unique-validator": "*"
-,"moment": "*"
-
-
+    ,"serve-favicon": "*"
+    ,"cookie-parser": "*"
+    ,"body-parser": "*"
+    ,"compression": "*"
+    ,"morgan": "*"
+    ,"express-session": "*"
+    ,"method-override": "*"
+    ,"csrf-crypto": "*"
+    ,"validator": "*"
+    ,"mongoose-validator": "*"
+    ,"mongoose-unique-validator": "*"
+    ,"moment": "*"
+    ,"soap": "*"
+    ,"underscore": "*"
 
   },
   "devDependencies": {
